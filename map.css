@@ -30,6 +30,8 @@ html, body {
     stroke: white;
     stroke-width: 1;
     pointer-events: auto;
+    fill: green;
+
     --color-departures: steelblue;
     --color-arrivals: darkorange;
     --color: color-mix(

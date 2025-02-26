@@ -149,7 +149,9 @@ map.on('load', async () => {
                 .attr('r', (d) => radiusScale(d.totalTraffic))
                 .style('--departure-ratio', (d) =>
                     stationFlow(d.departures / d.totalTraffic),
-                );
+                )
+                .select("title")
+                .text((d) => `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`); // Update text
         }
 
         timeSlider.addEventListener('input', updateTimeDisplay);
@@ -179,6 +181,9 @@ map.on('load', async () => {
               station.departures = departures.get(id) ?? 0;
               // TODO totalTraffic
               station.totalTraffic = station.arrivals + station.departures;
+              if (station.totalTraffic === 0) {
+                station.totalTraffic = null
+              }
               
               return station;
           });
